@@ -1,0 +1,28 @@
+name: 1.0$(rev:.r) # build numbering format
+
+variables:
+  BuildConfiguration: 'Release'
+  FolderToPublish: 'WpfUI'
+
+resources:
+  repositories:
+  - repository: ALMStuff
+    type: github
+    name: DrMueller/ALMStuff
+    ref: refs/heads/master
+    endpoint: GitHub-DrMueller
+
+jobs:
+- job: 'BuildAndPublishAsArtifact'
+  displayName: 'Build and save zipped Artifact'
+  pool:
+    name: Default
+  steps:
+  - template: AzureDevOps/BuildTemplates/NetCore/Steps/Initialize_And_Test.yaml@ALMStuff
+    parameters:
+      buildConfiguration: $(BuildConfiguration)
+  - template: AzureDevOps/BuildTemplates/NetCore/Steps/Publish.yaml@ALMStuff
+    parameters:
+      BuildConfiguration: $(BuildConfiguration)
+      FolderToPublish: $(FolderToPublish)
+  - template: AzureDevOps/BuildTemplates/NetCore/Steps/Zip_And_Save_Artifact.yaml@ALMStuff

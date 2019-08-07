@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="MMU CA for productive code" Description="MMU rule set for productive code" ToolsVersion="14.0">
+  <IncludeAll Action="Warning" />
+  <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
+    <Rule Id="CA1000" Action="None" />
+    <Rule Id="CA1002" Action="None" />
+    <Rule Id="CA1004" Action="None" />
+    <Rule Id="CA1006" Action="None" />
+    <Rule Id="CA1011" Action="None" />
+    <Rule Id="CA1014" Action="None" />
+    <Rule Id="CA1020" Action="None" />
+    <Rule Id="CA1024" Action="None" />
+    <Rule Id="CA1026" Action="None" />
+    <Rule Id="CA1032" Action="None" />
+    <Rule Id="CA1040" Action="None" />
+    <Rule Id="CA1056" Action="None" />
+    <Rule Id="CA1062" Action="None" />
+    <Rule Id="CA1303" Action="None" />
+    <Rule Id="CA1305" Action="None" />
+    <Rule Id="CA1500" Action="None" />
+    <Rule Id="CA1501" Action="None" />
+    <Rule Id="CA1502" Action="None" />
+    <Rule Id="CA1702" Action="None" />
+    <Rule Id="CA1703" Action="None" />
+    <Rule Id="CA1704" Action="None" />
+    <Rule Id="CA1724" Action="None" />
+    <Rule Id="CA1800" Action="None" />
+    <Rule Id="CA1804" Action="None" />
+    <Rule Id="CA1811" Action="None" />
+    <Rule Id="CA1812" Action="None" />
+    <Rule Id="CA1819" Action="None" />
+    <Rule Id="CA1823" Action="None" />
+    <Rule Id="CA2000" Action="None" />
+    <Rule Id="CA2100" Action="None" />
+    <Rule Id="CA2104" Action="None" />
+    <Rule Id="CA2109" Action="None" />
+    <Rule Id="CA2130" Action="None" />
+    <Rule Id="CA2131" Action="None" />
+    <Rule Id="CA2132" Action="None" />
+    <Rule Id="CA2133" Action="None" />
+    <Rule Id="CA2134" Action="None" />
+    <Rule Id="CA2135" Action="None" />
+    <Rule Id="CA2137" Action="None" />
+    <Rule Id="CA2138" Action="None" />
+    <Rule Id="CA2139" Action="None" />
+    <Rule Id="CA2141" Action="None" />
+    <Rule Id="CA2142" Action="None" />
+    <Rule Id="CA2143" Action="None" />
+    <Rule Id="CA2144" Action="None" />
+    <Rule Id="CA2145" Action="None" />
+    <Rule Id="CA2146" Action="None" />
+    <Rule Id="CA2149" Action="None" />
+    <Rule Id="CA2202" Action="None" />
+    <Rule Id="CA2204" Action="None" />
+    <Rule Id="CA2210" Action="None" />
+    <Rule Id="CA2215" Action="None" />
+    <Rule Id="CA2227" Action="None" />
+    <Rule Id="CA2240" Action="None" />
+    <Rule Id="CA2241" Action="None" />
+    <Rule Id="CA2243" Action="None" />
+    <Rule Id="CA2007" Action="None" />
+  </Rules>
+  <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
+    <Rule Id="SA1116" Action="None" />
+    <Rule Id="SA1118" Action="None" />
+    <Rule Id="SA1200" Action="None" />
+    <Rule Id="SA1652" Action="None" />
+    <Rule Id="SA1101" Action="None" />
+    <Rule Id="SA1413" Action="None" />
+    <Rule Id="SA1633" Action="None" />
+    <Rule Id="SA1309" Action="None" />
+    <Rule Id="SA1516" Action="None" />
+    <Rule Id="SA1201" Action="None" />
+    <Rule Id="SA1600" Action="None" />
+    <Rule Id="SA1601" Action="None" />
+  </Rules>
+</RuleSet>

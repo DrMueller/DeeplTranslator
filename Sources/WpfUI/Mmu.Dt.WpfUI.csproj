@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Features>IOperation</Features>
+    <CodeAnalysisRuleSet>..\..\CA_ProductionCode.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Areas\JsonTranslation\ViewModels\TranslateJsonViewDict.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mmu.Mlh.ServiceProvisioning" Version="2.0.7" />
+    <PackageReference Include="Mmu.Mlh.WpfCoreExtensions" Version="1.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Mmu.Dt.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Infrastructure\Assets\App.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

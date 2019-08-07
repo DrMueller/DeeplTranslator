@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="Mmu.Dt.WpfUI.Areas.JsonTranslation.ViewModels.TranslateJsonView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:Mmu.Mlh.WpfCoreExtensions.Areas.MvvmShell.CommandManagement.Components.CommandBars.Controls;assembly=Mmu.Mlh.WpfCoreExtensions"
+             xmlns:commandbuttons="clr-namespace:Mmu.Mlh.WpfCoreExtensions.Areas.MvvmShell.CommandManagement.Components.CommandButtons;assembly=Mmu.Mlh.WpfCoreExtensions"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="TranslateJsonViewDict.xaml" />
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <controls:CommandBar Grid.Row="0" Commands="{Binding Path=Commands, Mode=OneWay}" />
+
+        <GroupBox Grid.Row="1" Header="Configuration">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="50" />
+                </Grid.ColumnDefinitions>
+
+                <Label>Source</Label>
+                <TextBox Grid.Column="1" Text="{Binding SourceFilePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <Button Grid.Column="2" Style="{StaticResource DialogButton}" Command="{Binding SelectSourceFile.Command, Mode=OneWay}" Content="{Binding SelectSourceFile.Description, Mode=OneWay}" />
+                <TextBox Grid.Column="3"  Margin="10,0,0,0" Text="{Binding SourceLanguageCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+                <Label Grid.Row="1">Target</Label>
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding TargetFilePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <Button Style="{StaticResource DialogButton}" Grid.Row="1" Grid.Column="2" Command="{Binding SelectTargetFile.Command, Mode=OneWay}" Content="{Binding SelectTargetFile.Description, Mode=OneWay}" />
+                <TextBox Grid.Row="1" Grid.Column="3" Margin="10,0,0,0" Text="{Binding TargetLanguageCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </Grid>
+        </GroupBox>
+    
+    </Grid>
+</UserControl>
