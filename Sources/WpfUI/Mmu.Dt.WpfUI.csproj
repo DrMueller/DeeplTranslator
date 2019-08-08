@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Common\Mmu.Dt.Common.csproj" />
     <ProjectReference Include="..\Domain\Mmu.Dt.Domain.csproj" />
   </ItemGroup>
 

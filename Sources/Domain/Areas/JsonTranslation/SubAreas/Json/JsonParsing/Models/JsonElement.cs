@@ -3,7 +3,7 @@ using Mmu.Mlh.LanguageExtensions.Areas.Types.FunctionsResults;
 
 namespace Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonParsing.Models
 {
-    public abstract class JsonElement
+    internal abstract class JsonElement
     {
         public string Key
         {
@@ -29,6 +29,6 @@ namespace Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonParsing.Models
 
         public abstract FunctionResult<JsonElement> FindDeepestElement(string objectElementKey);
 
-        public abstract IReadOnlyCollection<JsonValueElement> GetValueElements();
+        public abstract IReadOnlyCollection<JsonValueElement> GetFlatValueElements();
     }
 }

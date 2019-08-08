@@ -31,18 +31,30 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="50" />
-                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <Label>Source</Label>
                 <TextBox Grid.Column="1" Text="{Binding SourceFilePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 <Button Grid.Column="2" Style="{StaticResource DialogButton}" Command="{Binding SelectSourceFile.Command, Mode=OneWay}" Content="{Binding SelectSourceFile.Description, Mode=OneWay}" />
-                <TextBox Grid.Column="3"  Margin="10,0,0,0" Text="{Binding SourceLanguageCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+                <ComboBox
+                    Grid.Column="3"
+                    Style="{StaticResource LanguageComboBox}"
+                    DisplayMemberPath ="Description"
+                    ItemsSource="{Binding SourceLanguages, Mode=OneWay}"
+                    SelectedItem="{Binding SelectedSourceLanguage, Mode=TwoWay}" />
 
                 <Label Grid.Row="1">Target</Label>
                 <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding TargetFilePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 <Button Style="{StaticResource DialogButton}" Grid.Row="1" Grid.Column="2" Command="{Binding SelectTargetFile.Command, Mode=OneWay}" Content="{Binding SelectTargetFile.Description, Mode=OneWay}" />
-                <TextBox Grid.Row="1" Grid.Column="3" Margin="10,0,0,0" Text="{Binding TargetLanguageCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <ComboBox
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    Style="{StaticResource LanguageComboBox}"
+                    DisplayMemberPath ="Description"
+                    ItemsSource="{Binding TargetLanguages, Mode=OneWay}"
+                    SelectedItem="{Binding SelectedTargetLanguage, Mode=TwoWay}" />
             </Grid>
         </GroupBox>
     

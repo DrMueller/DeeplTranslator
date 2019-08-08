@@ -5,7 +5,7 @@ using Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonParsing.Models;
 
 namespace Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonComparison.Services.Implementation
 {
-    public class JsonComparisonService : IJsonComparisonService
+    internal class JsonComparisonService : IJsonComparisonService
     {
         public IReadOnlyCollection<JsonKeyValue> CreateElementsToTranslate(JsonObjectElement source, JsonObjectElement target)
         {
@@ -13,7 +13,6 @@ namespace Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonComparison.Servi
             var targetValueElements = target.GetFlatValueElements();
 
             var missingElements = sourceValueElements.Except(targetValueElements).ToList();
-
             var result = missingElements.Select(f => new JsonKeyValue(f.Key, f.Value.ToString())).ToList();
             return result;
         }

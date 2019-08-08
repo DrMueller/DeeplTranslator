@@ -7,4 +7,9 @@
         <Setter Property="Width" Value="30" />
     </Style>
 
+    <Style x:Key="LanguageComboBox" TargetType="ComboBox">
+        <Setter Property="Height" Value="25" />
+        <Setter Property="Width" Value="150" />
+    </Style>
+
 </ResourceDictionary>

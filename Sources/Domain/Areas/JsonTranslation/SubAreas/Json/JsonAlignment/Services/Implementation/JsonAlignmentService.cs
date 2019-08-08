@@ -7,24 +7,14 @@ using Mmu.Mlh.LanguageExtensions.Areas.Collections;
 
 namespace Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonAlignment.Services.Implementation
 {
-    public class JsonAlignmentService : IJsonAlignmentService
+    internal class JsonAlignmentService : IJsonAlignmentService
     {
         public void AlignRootElement(JsonObjectElement root, IReadOnlyCollection<JsonKeyValue> keyValues)
         {
             keyValues.ForEach(f => AlignKeyValue(root, f));
         }
 
-        private static JsonObjectElement AlignObjectStructure(JsonObjectElement element, IReadOnlyCollection<string> missingKeyParts)
-        {
-            foreach (var keyPart in missingKeyParts)
-            {
-                element = element.AddObjectElement(keyPart);
-            }
-
-            return element;
-        }
-
-        private void AlignKeyValue(JsonObjectElement root, JsonKeyValue keyValue)
+        private static void AlignKeyValue(JsonObjectElement root, JsonKeyValue keyValue)
         {
             var jsonKey = JsonKey.Create(keyValue.Key);
             var depeestElementResult = root.Children.Select(f => f.FindDeepestElement(jsonKey.FullKey)).FirstOrDefault(f => f.IsSuccess)?.Value ?? root;
@@ -43,6 +33,16 @@ namespace Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonAlignment.Servic
                     valueElement.ReplaceValue(keyValue.Value);
                 }
             }
+        }
+
+        private static JsonObjectElement AlignObjectStructure(JsonObjectElement element, IReadOnlyCollection<string> missingKeyParts)
+        {
+            foreach (var keyPart in missingKeyParts)
+            {
+                element = element.AddObjectElement(keyPart);
+            }
+
+            return element;
         }
     }
 }

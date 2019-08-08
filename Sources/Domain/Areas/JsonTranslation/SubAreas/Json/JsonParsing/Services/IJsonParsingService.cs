@@ -2,7 +2,7 @@
 
 namespace Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonParsing.Services
 {
-    public interface IJsonParsingService
+    internal interface IJsonParsingService
     {
         JsonObjectElement Parse(string filePath);
     }

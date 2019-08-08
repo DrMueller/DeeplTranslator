@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonAlignment.Models
 {
-    public class JsonKey
+    internal class JsonKey
     {
         public string FullKey { get; }
         public string ObjectElementKey { get; }

@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonWriting.Services.Implementation
 {
-    public class JsonWritingService : IJsonWritingService
+    internal class JsonWritingService : IJsonWritingService
     {
         private readonly IFileSystem _fileSystem;
 

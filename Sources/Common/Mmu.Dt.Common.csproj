@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <Features>IOperation</Features>
+    <CodeAnalysisRuleSet>..\..\CA_ProductionCode.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mmu.Mlh.ServiceProvisioning" Version="2.0.7" />
+    <PackageReference Include="Mmu.Mlh.SettingsProvisioning" Version="1.0.5" />
+  </ItemGroup>
+
+</Project>

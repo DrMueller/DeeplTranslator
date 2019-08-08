@@ -5,7 +5,7 @@ using Mmu.Mlh.LanguageExtensions.Areas.Types.FunctionsResults;
 
 namespace Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonParsing.Models
 {
-    public class JsonObjectElement : JsonElement
+    internal class JsonObjectElement : JsonElement
     {
         private List<JsonElement> _children = new List<JsonElement>();
         public IReadOnlyCollection<JsonElement> Children => _children;
@@ -32,14 +32,7 @@ namespace Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonParsing.Models
             if (objectElementKey.StartsWith(Key, StringComparison.OrdinalIgnoreCase))
             {
                 var deeperChild = _children.Select(f => f.FindDeepestElement(objectElementKey)).FirstOrDefault(f => f.IsSuccess);
-                if (deeperChild != null)
-                {
-                    return deeperChild;
-                }
-                else
-                {
-                    return FunctionResult.CreateSuccess<JsonElement>(this);
-                }
+                return deeperChild ?? FunctionResult.CreateSuccess<JsonElement>(this);
             }
             else
             {
@@ -47,14 +40,9 @@ namespace Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonParsing.Models
             }
         }
 
-        public IReadOnlyCollection<JsonValueElement> GetFlatValueElements()
+        public override IReadOnlyCollection<JsonValueElement> GetFlatValueElements()
         {
-            return Children.SelectMany(f => f.GetValueElements()).ToList();
-        }
-
-        public override IReadOnlyCollection<JsonValueElement> GetValueElements()
-        {
-            return _children.SelectMany(f => f.GetValueElements()).ToList();
+            return _children.SelectMany(f => f.GetFlatValueElements()).ToList();
         }
     }
 }

@@ -4,7 +4,7 @@ using Mmu.Mlh.LanguageExtensions.Areas.Types.FunctionsResults;
 
 namespace Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonParsing.Models
 {
-    public class JsonValueElement : JsonElement, IEquatable<JsonValueElement>
+    internal class JsonValueElement : JsonElement, IEquatable<JsonValueElement>
     {
         public object Value { get; private set; }
 
@@ -69,7 +69,7 @@ namespace Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonParsing.Models
             return Key.GetHashCode(StringComparison.Ordinal);
         }
 
-        public override IReadOnlyCollection<JsonValueElement> GetValueElements()
+        public override IReadOnlyCollection<JsonValueElement> GetFlatValueElements()
         {
             return new List<JsonValueElement> { this };
         }

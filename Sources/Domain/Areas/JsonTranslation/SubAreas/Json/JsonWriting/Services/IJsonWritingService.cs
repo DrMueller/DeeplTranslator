@@ -2,7 +2,7 @@
 
 namespace Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonWriting.Services
 {
-    public interface IJsonWritingService
+    internal interface IJsonWritingService
     {
         void WriteJson(JsonObjectElement root, string filePath);
     }

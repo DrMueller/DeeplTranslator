@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonParsing.Services.Implementation
 {
-    public class JsonParsingService : IJsonParsingService
+    internal class JsonParsingService : IJsonParsingService
     {
         private readonly IFileSystem _fileSystem;
 
@@ -15,9 +15,14 @@ namespace Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonParsing.Services
 
         public JsonObjectElement Parse(string filePath)
         {
-            var jsonText = _fileSystem.File.ReadAllText(filePath);
             var rootObjectElement = new JsonObjectElement(string.Empty, null);
 
+            if (!_fileSystem.File.Exists(filePath))
+            {
+                return rootObjectElement;
+            }
+
+            var jsonText = _fileSystem.File.ReadAllText(filePath);
             if (string.IsNullOrEmpty(jsonText))
             {
                 return rootObjectElement;

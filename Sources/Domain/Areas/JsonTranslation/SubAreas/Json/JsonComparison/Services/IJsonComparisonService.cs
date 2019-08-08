@@ -4,8 +4,8 @@ using Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonParsing.Models;
 
 namespace Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonComparison.Services
 {
-    public interface IJsonComparisonService
+    internal interface IJsonComparisonService
     {
-        IReadOnlyCollection<JsonKeyValue> CreateElementsToTranslate(JsonObjectElement source, JsonObjectElement target);
+        IReadOnlyCollection<JsonKeyValue> CreateElementsToTranslate(JsonObjectElement sourceFilePath, JsonObjectElement targetFilePath);
     }
 }

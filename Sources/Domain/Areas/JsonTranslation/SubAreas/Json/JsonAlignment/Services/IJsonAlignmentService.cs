@@ -4,7 +4,7 @@ using Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonParsing.Models;
 
 namespace Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonAlignment.Services
 {
-    public interface IJsonAlignmentService
+    internal interface IJsonAlignmentService
     {
         void AlignRootElement(JsonObjectElement root, IReadOnlyCollection<JsonKeyValue> keyValues);
     }
