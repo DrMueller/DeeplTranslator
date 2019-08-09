@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.Common.Models;
 using Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonAlignment.Models;
@@ -22,6 +23,13 @@ namespace Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonAlignment.Servic
             if (depeestElementResult is JsonObjectElement objectElement)
             {
                 var missingKeyParts = jsonKey.FetchMissingObjectElementKeyParts(objectElement.Key);
+                Debug.WriteLine(objectElement.Key);
+
+                if (objectElement.Key == "areas_home_welcome_components_welcome")
+                {
+                    Debugger.Break();
+                }
+
                 objectElement = AlignObjectStructure(objectElement, missingKeyParts);
                 objectElement.AddValueElement(jsonKey.ValueElementKey, keyValue.Value);
             }
