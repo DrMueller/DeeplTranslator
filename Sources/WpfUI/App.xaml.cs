@@ -17,7 +17,7 @@ namespace Mmu.Dt.WpfUI
         protected override void OnActivated(EventArgs e)
         {
             var settingsProvider = ServiceLocatorSingleton.Instance.GetService<ISettingsProvider>();
-            settingsProvider.Initialize(@"C:\Users\mlm\Dropbox\appsettings.json");
+            settingsProvider.Initialize(@"C:\Users\Matthias\Dropbox\Apps\DeeplTranslator\appsettings.json");
         }
 
         protected override async void OnStartup(StartupEventArgs e)
