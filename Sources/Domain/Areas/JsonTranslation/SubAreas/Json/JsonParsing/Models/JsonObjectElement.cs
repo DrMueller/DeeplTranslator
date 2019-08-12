@@ -7,7 +7,7 @@ namespace Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonParsing.Models
 {
     internal class JsonObjectElement : JsonElement
     {
-        private SortedList<string, JsonElement> _children = new SortedList<string, JsonElement>();
+        private readonly SortedList<string, JsonElement> _children = new SortedList<string, JsonElement>();
         public IReadOnlyCollection<JsonElement> Children => _children.Select(f => f.Value).ToList();
 
         public JsonObjectElement(string name, JsonElement parent)
