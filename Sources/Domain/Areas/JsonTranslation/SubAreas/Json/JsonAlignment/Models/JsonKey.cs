@@ -14,9 +14,8 @@ namespace Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonAlignment.Models
         private JsonKey(string key)
         {
             var keyParts = key.Split('_');
-            HERE KeyParts last removes 2 entries¿
-            ObjectElementKeyParts = keyParts.Except(new List<string> { keyParts.Last() }).ToList();
             ValueElementKey = keyParts.Last();
+            ObjectElementKeyParts = keyParts.Take(keyParts.Count() - 1).ToList();
             ObjectElementKey = string.Join('_', ObjectElementKeyParts);
             FullKey = key;
         }

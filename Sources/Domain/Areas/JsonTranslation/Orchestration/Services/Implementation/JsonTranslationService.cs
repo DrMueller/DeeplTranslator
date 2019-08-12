@@ -38,7 +38,7 @@ namespace Mmu.Dt.Domain.Areas.JsonTranslation.Orchestration.Services.Implementat
 
             if (elementsToTranslate.Count > 0)
             {
-                //var translatedElements = await _sender.SendElementsAsync(request, elementsToTranslate);
+                var translatedElements = await _sender.SendElementsAsync(request, elementsToTranslate);
                 _jsonAligner.AlignRootElement(targetJson, elementsToTranslate);
                 _jsonWriter.WriteJson(targetJson, request.TargetFilePath);
             }

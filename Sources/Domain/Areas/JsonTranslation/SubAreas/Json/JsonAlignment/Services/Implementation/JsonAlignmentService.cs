@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.Common.Models;
 using Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonAlignment.Models;
@@ -18,18 +17,14 @@ namespace Mmu.Dt.Domain.Areas.JsonTranslation.SubAreas.Json.JsonAlignment.Servic
         private static void AlignKeyValue(JsonObjectElement root, JsonKeyValue keyValue)
         {
             var jsonKey = JsonKey.Create(keyValue.Key);
-            var depeestElementResult = root.Children.Select(f => f.FindDeepestElement(jsonKey.FullKey)).FirstOrDefault(f => f.IsSuccess)?.Value ?? root;
+
+            var depeestElementResult = root.Children
+                .Select(f => f.FindDeepestElement(jsonKey.FullKey))
+                .FirstOrDefault(f => f.IsSuccess)?.Value ?? root;
 
             if (depeestElementResult is JsonObjectElement objectElement)
             {
                 var missingKeyParts = jsonKey.FetchMissingObjectElementKeyParts(objectElement.Key);
-                Debug.WriteLine(objectElement.Key);
-
-                if (objectElement.Key == "areas_home_welcome_components_welcome")
-                {
-                    Debugger.Break();
-                }
-
                 objectElement = AlignObjectStructure(objectElement, missingKeyParts);
                 objectElement.AddValueElement(jsonKey.ValueElementKey, keyValue.Value);
             }
