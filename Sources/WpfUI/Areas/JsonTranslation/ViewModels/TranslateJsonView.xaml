@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:controls="clr-namespace:Mmu.Mlh.WpfCoreExtensions.Areas.MvvmShell.CommandManagement.Components.CommandBars.Controls;assembly=Mmu.Mlh.WpfCoreExtensions"
-             xmlns:commandbuttons="clr-namespace:Mmu.Mlh.WpfCoreExtensions.Areas.MvvmShell.CommandManagement.Components.CommandButtons;assembly=Mmu.Mlh.WpfCoreExtensions"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -30,13 +29,11 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="50" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <Label>Source</Label>
                 <TextBox Grid.Column="1" Text="{Binding SourceFilePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-                <Button Grid.Column="2" Style="{StaticResource DialogButton}" Command="{Binding SelectSourceFile.Command, Mode=OneWay}" Content="{Binding SelectSourceFile.Description, Mode=OneWay}" />
 
                 <ComboBox
                     Grid.Column="3"
@@ -47,7 +44,6 @@
 
                 <Label Grid.Row="1">Target</Label>
                 <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding TargetFilePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-                <Button Style="{StaticResource DialogButton}" Grid.Row="1" Grid.Column="2" Command="{Binding SelectTargetFile.Command, Mode=OneWay}" Content="{Binding SelectTargetFile.Description, Mode=OneWay}" />
                 <ComboBox
                     Grid.Row="1"
                     Grid.Column="3"

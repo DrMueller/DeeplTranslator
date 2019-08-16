@@ -34,7 +34,6 @@ namespace Mmu.Dt.DeeplProxy.Areas.TextTranslations.Services.Implementation
         {
             var restCall = BuildRestCall(request);
 
-            var tra = restCall.AbsoluteUri.ToString();
             var response = await _restProxy.PerformCallAsync<TextTranslationResultDto>(restCall);
             var result = _resultAdapter.Adapt(request, response);
             return result;
@@ -48,7 +47,7 @@ namespace Mmu.Dt.DeeplProxy.Areas.TextTranslations.Services.Implementation
                 .WithQueryParameter("auth_key", apiKey)
                 .WithQueryParameter("target_lang", request.TargetLanguage.Code);
 
-            request.ApplyIgnoreMarkUp();
+            request.ApplyIgnoreMarkUp(builder);
 
             request.SourceLanguage.Evaluate(language =>
             {

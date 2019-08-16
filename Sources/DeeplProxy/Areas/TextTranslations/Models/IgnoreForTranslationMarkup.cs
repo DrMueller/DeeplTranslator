@@ -4,9 +4,9 @@ namespace Mmu.Dt.DeeplProxy.Areas.TextTranslations.Models
 {
     public class IgnoreForTranslationMarkup
     {
-        public const string IgnoreBeginTag = "<x>";
-        public const string IgnoreEndTag = "</x>";
-
+        public const string IgnoreTag = "x";
+        public static readonly string IgnoreBeginTag = $"<{IgnoreTag}>";
+        public static readonly string IgnoreEndTag = $"</{IgnoreTag}>";
         public string BeginTag { get; }
         public string EndTag { get; }
 

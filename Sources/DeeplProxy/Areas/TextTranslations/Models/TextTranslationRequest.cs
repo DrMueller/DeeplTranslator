@@ -2,6 +2,7 @@
 using Mmu.Mlh.LanguageExtensions.Areas.Collections;
 using Mmu.Mlh.LanguageExtensions.Areas.Invariance;
 using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes;
+using Mmu.Mlh.RestExtensions.Areas.RestCallBuilding;
 
 namespace Mmu.Dt.DeeplProxy.Areas.TextTranslations.Models
 {
@@ -32,12 +33,16 @@ namespace Mmu.Dt.DeeplProxy.Areas.TextTranslations.Models
             TextParts = textParts;
         }
 
-        internal void ApplyIgnoreMarkUp()
+        internal void ApplyIgnoreMarkUp(IRestCallBuilder builder)
         {
             IgnoreMarkup.Evaluate(markup =>
             {
                 TextParts.ForEach(part => part.ReplaceTextmarks(markup.BeginTag, IgnoreForTranslationMarkup.IgnoreBeginTag));
                 TextParts.ForEach(part => part.ReplaceTextmarks(markup.EndTag, IgnoreForTranslationMarkup.IgnoreEndTag));
+
+                builder
+                    .WithQueryParameter("tag_handling", "xml")
+                    .WithQueryParameter("ignore_tags", IgnoreForTranslationMarkup.IgnoreTag);
             });
         }
     }

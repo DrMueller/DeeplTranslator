@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <PackageReference Include="Mmu.Mlh.ServiceProvisioning" Version="2.0.7" />
-    <PackageReference Include="Mmu.Mlh.WpfCoreExtensions" Version="1.1.3" />
+    <PackageReference Include="Mmu.Mlh.WpfCoreExtensions" Version="1.1.4" />
   </ItemGroup>
 
   <ItemGroup>

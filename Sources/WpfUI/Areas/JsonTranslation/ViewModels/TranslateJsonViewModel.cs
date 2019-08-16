@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Mmu.Dt.WpfUI.Areas.JsonTranslation.ViewData;
 using Mmu.Dt.WpfUI.Areas.JsonTranslation.ViewServices;
 using Mmu.Mlh.WpfCoreExtensions.Areas.MvvmShell.CommandManagement.Components.CommandBars.ViewData;
-using Mmu.Mlh.WpfCoreExtensions.Areas.MvvmShell.CommandManagement.ViewModelCommands;
 using Mmu.Mlh.WpfCoreExtensions.Areas.MvvmShell.ViewModels;
 using Mmu.Mlh.WpfCoreExtensions.Areas.MvvmShell.ViewModels.Behaviors;
 
@@ -48,9 +47,6 @@ namespace Mmu.Dt.WpfUI.Areas.JsonTranslation.ViewModels
                 }
             }
         }
-
-        public IViewModelCommand SelectSourceFile => _commandContainer.SelectSourceFile;
-        public IViewModelCommand SelectTargetFile => _commandContainer.SelectTargetFile;
 
         public string SourceFilePath
         {
