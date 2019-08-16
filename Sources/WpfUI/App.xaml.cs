@@ -19,18 +19,17 @@ namespace Mmu.Dt.WpfUI
 
         private static void AfterAppInitialized(IServiceLocator serviceLocator)
         {
-            var infoPath = @"Dropbox\info.json";
-            var jsonPath = Path.Combine(Environment.GetEnvironmentVariable("LocalAppData"), infoPath);
-            if (!File.Exists(jsonPath))
-            {
-                jsonPath = Path.Combine(Environment.GetEnvironmentVariable("AppData"), infoPath);
-            }
-
-            var dropboxPath = File.ReadAllText(jsonPath).Split('\"')[5].Replace(@"\\", @"\", StringComparison.Ordinal);
             var settingsProvider = ServiceLocatorSingleton.Instance.GetService<ISettingsProvider>();
+            settingsProvider.Initialize(GetCodeBasePath());
+        }
 
-            var fullPath = Path.Combine(dropboxPath, @"Apps\DeeplTranslator\");
-            settingsProvider.Initialize(fullPath);
+        private static string GetCodeBasePath()
+        {
+            var codeBase = typeof(App).Assembly.CodeBase;
+            var uri = new UriBuilder(codeBase);
+            var result = Uri.UnescapeDataString(uri.Path);
+            result = Path.GetDirectoryName(result);
+            return result;
         }
     }
 }

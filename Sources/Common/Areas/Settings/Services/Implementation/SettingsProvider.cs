@@ -1,6 +1,7 @@
 ﻿using Mmu.Dt.Common.Areas.Settings.Dtos;
 using Mmu.Dt.Common.Areas.Settings.Models;
 using Mmu.Mlh.SettingsProvisioning.Areas.Factories;
+using Mmu.Mlh.SettingsProvisioning.Areas.Models;
 
 namespace Mmu.Dt.Common.Areas.Settings.Services.Implementation
 {
@@ -16,7 +17,13 @@ namespace Mmu.Dt.Common.Areas.Settings.Services.Implementation
 
         public void Initialize(string settingsPath)
         {
-            var settingsDto = _settingsFactory.CreateSettings<AppSettingsDto>(AppSettings.SectionKey, string.Empty, settingsPath);
+            var settingsConfig = new SettingsConfiguration(
+                AppSettings.SectionKey,
+                string.Empty,
+                settingsPath,
+                 @"Apps\DeeplTranslator\");
+
+            var settingsDto = _settingsFactory.CreateSettings<AppSettingsDto>(settingsConfig);
             _appSettings = new AppSettings(settingsDto.DeeplApiKey);
         }
 
