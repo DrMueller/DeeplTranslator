@@ -2,6 +2,7 @@
 using Mmu.Mlh.LanguageExtensions.Areas.Collections;
 using Mmu.Mlh.LanguageExtensions.Areas.Invariance;
 using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes;
+using Mmu.Mlh.RestExtensions.Areas.QueryParamBuilding;
 using Mmu.Mlh.RestExtensions.Areas.RestCallBuilding;
 
 namespace Mmu.Dt.DeeplProxy.Areas.TextTranslations.Models
@@ -33,7 +34,7 @@ namespace Mmu.Dt.DeeplProxy.Areas.TextTranslations.Models
             TextParts = textParts;
         }
 
-        internal void ApplyIgnoreMarkUp(IRestCallBuilder builder)
+        internal void ApplyIgnoreMarkUp(IRestQueryParameterBuilder builder)
         {
             IgnoreMarkup.Evaluate(markup =>
             {

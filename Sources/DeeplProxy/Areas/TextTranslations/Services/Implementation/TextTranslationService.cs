@@ -6,6 +6,7 @@ using Mmu.Dt.DeeplProxy.Areas.TextTranslations.Models;
 using Mmu.Dt.DeeplProxy.Areas.TextTranslations.Services.Servants;
 using Mmu.Mlh.LanguageExtensions.Areas.Collections;
 using Mmu.Mlh.RestExtensions.Areas.Models;
+using Mmu.Mlh.RestExtensions.Areas.QueryParamBuilding;
 using Mmu.Mlh.RestExtensions.Areas.RestCallBuilding;
 using Mmu.Mlh.RestExtensions.Areas.RestProxies;
 
@@ -13,6 +14,7 @@ namespace Mmu.Dt.DeeplProxy.Areas.TextTranslations.Services.Implementation
 {
     internal class TextTranslationService : ITextTranslationService
     {
+        private readonly IStandaloneQueryParameterBuilderFactory _queryParamBuilderFactory;
         private readonly IRestCallBuilderFactory _restCallBuilderFactory;
         private readonly IRestProxy _restProxy;
         private readonly ITextTranslationResultAdapter _resultAdapter;
@@ -21,11 +23,13 @@ namespace Mmu.Dt.DeeplProxy.Areas.TextTranslations.Services.Implementation
         public TextTranslationService(
             IRestProxy restProxy,
             IRestCallBuilderFactory restCallBuilderFactory,
+            IStandaloneQueryParameterBuilderFactory queryParamBuilderFactory,
             ISettingsProvider settingsProvider,
             ITextTranslationResultAdapter resultAdapter)
         {
             _restProxy = restProxy;
             _restCallBuilderFactory = restCallBuilderFactory;
+            _queryParamBuilderFactory = queryParamBuilderFactory;
             _settingsProvider = settingsProvider;
             _resultAdapter = resultAdapter;
         }
@@ -43,21 +47,24 @@ namespace Mmu.Dt.DeeplProxy.Areas.TextTranslations.Services.Implementation
         {
             var apiKey = _settingsProvider.ProvideSettings().DeeplApiKey;
             var builder = _restCallBuilderFactory
-                .StartBuilding(new Uri("https://api.deepl.com/v2/translate"), RestCallMethodType.Post)
+                .StartBuilding(new Uri("https://api.deepl.com/v2/translate"), RestCallMethodType.Post);
+
+            var queryParamBuilder = builder.WithQueryParameters()
                 .WithQueryParameter("auth_key", apiKey)
                 .WithQueryParameter("target_lang", request.TargetLanguage.Code);
 
-            request.ApplyIgnoreMarkUp(builder);
-
             request.SourceLanguage.Evaluate(language =>
             {
-                builder.WithQueryParameter("source_lang", language.Code);
+                queryParamBuilder.WithQueryParameter("source_lang", language.Code);
             });
 
-            request.TextParts.ForEach(part =>
+            request.ApplyIgnoreMarkUp(queryParamBuilder);
+            request.TextParts.ForEach(tp =>
             {
-                builder.WithQueryParameter("text", part.Text);
+                queryParamBuilder.WithQueryParameter("text", tp.Text);
             });
+
+            builder = queryParamBuilder.BuildQueryParameters();
 
             return builder.Build();
         }

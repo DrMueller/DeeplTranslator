@@ -7,7 +7,7 @@ namespace Mmu.Dt.DeeplProxy.Areas.TextTranslations.Models
 {
     public class TranslationLanguage
     {
-        private static readonly Lazy<IReadOnlyCollection<TranslationLanguage>> LazyAll = new Lazy<IReadOnlyCollection<TranslationLanguage>>(() =>
+        private static readonly Lazy<IReadOnlyCollection<TranslationLanguage>> _lazyAll = new Lazy<IReadOnlyCollection<TranslationLanguage>>(() =>
         {
             return new List<TranslationLanguage>
             {
@@ -22,7 +22,7 @@ namespace Mmu.Dt.DeeplProxy.Areas.TextTranslations.Models
             };
         });
 
-        public static IReadOnlyCollection<TranslationLanguage> All => LazyAll.Value;
+        public static IReadOnlyCollection<TranslationLanguage> All => _lazyAll.Value;
 
         public static TranslationLanguage Dutch { get; } = new TranslationLanguage("NL", "Dutch");
         public static TranslationLanguage English { get; } = new TranslationLanguage("EN", "English");
