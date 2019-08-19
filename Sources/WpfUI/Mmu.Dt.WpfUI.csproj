@@ -10,6 +10,8 @@
 
   <ItemGroup>
     <None Remove="Areas\JsonTranslation\ViewModels\TranslateJsonViewDict.xaml" />
+    <None Remove="Areas\ResxTranslation\ViewModels\TranslateResxView.xaml" />
+    <None Remove="Areas\ResxTranslation\ViewModels\TranslateResxViewDict.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +28,17 @@
     <None Update="Infrastructure\Assets\App.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\ResxTranslation\ViewServices\" />
+    <Folder Include="Areas\ResxTranslation\ViewData\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Areas\ResxTranslation\ViewModels\TranslateResxViewDict.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

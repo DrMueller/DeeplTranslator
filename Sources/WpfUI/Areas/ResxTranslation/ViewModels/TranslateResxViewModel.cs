@@ -7,9 +7,9 @@ using Mmu.Mlh.WpfCoreExtensions.Areas.MvvmShell.CommandManagement.Components.Com
 using Mmu.Mlh.WpfCoreExtensions.Areas.MvvmShell.ViewModels;
 using Mmu.Mlh.WpfCoreExtensions.Areas.MvvmShell.ViewModels.Behaviors;
 
-namespace Mmu.Dt.WpfUI.Areas.JsonTranslation.ViewModels
+namespace Mmu.Dt.WpfUI.Areas.ResxTranslation.ViewModels
 {
-    public class TranslateJsonViewModel : ViewModelBase, INavigatableViewModel, IInitializableViewModel
+    public class TranslateResxViewModel : ViewModelBase, INavigatableViewModel, IInitializableViewModel
     {
         private readonly CommandContainer _commandContainer;
         private readonly ITranslationLanguageFactory _translationLanguageFactory;
@@ -18,9 +18,9 @@ namespace Mmu.Dt.WpfUI.Areas.JsonTranslation.ViewModels
         private string _sourceFile;
         private string _targetFile;
         public CommandsViewData Commands => _commandContainer.Commands;
-        public string HeadingDescription => "Translate JSON";
-        public string NavigationDescription => "Json";
-        public int NavigationSequence => 1;
+        public string HeadingDescription => "Translate Resx";
+        public string NavigationDescription => "Resx";
+        public int NavigationSequence => 2;
 
         public TranslationLanguageViewData SelectedSourceLanguage
         {
@@ -78,7 +78,9 @@ namespace Mmu.Dt.WpfUI.Areas.JsonTranslation.ViewModels
 
         public ObservableCollection<TranslationLanguageViewData> TargetLanguages { get; private set; }
 
-        public TranslateJsonViewModel(CommandContainer commandContainer, ITranslationLanguageFactory translationLanguageFactory)
+        public TranslateResxViewModel(
+            CommandContainer commandContainer,
+            ITranslationLanguageFactory translationLanguageFactory)
         {
             _commandContainer = commandContainer;
             _translationLanguageFactory = translationLanguageFactory;

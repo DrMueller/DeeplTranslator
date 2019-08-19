@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Mmu.Dt.Domain.Areas.Translations.Common.Models;
-using Mmu.Dt.Domain.Areas.Translations.Json.Orchestration.Services;
+using Mmu.Dt.Domain.Areas.Translations.Resx.Orchestration.Services;
 using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes;
 using Mmu.Mlh.WpfCoreExtensions.Areas.Aspects.InformationHandling.Models;
 using Mmu.Mlh.WpfCoreExtensions.Areas.Aspects.InformationHandling.Services;
@@ -8,17 +8,18 @@ using Mmu.Mlh.WpfCoreExtensions.Areas.MvvmShell.CommandManagement.Commands;
 using Mmu.Mlh.WpfCoreExtensions.Areas.MvvmShell.CommandManagement.Components.CommandBars.ViewData;
 using Mmu.Mlh.WpfCoreExtensions.Areas.MvvmShell.CommandManagement.ViewModelCommands;
 
-namespace Mmu.Dt.WpfUI.Areas.JsonTranslation.ViewModels
+namespace Mmu.Dt.WpfUI.Areas.ResxTranslation.ViewModels
 {
-    public class CommandContainer : IViewModelCommandContainer<TranslateJsonViewModel>
+    public class CommandContainer : IViewModelCommandContainer<TranslateResxViewModel>
     {
         private readonly IInformationPublisher _informationPublisher;
-        private readonly IJsonTranslationService _jsonTranslationService;
-        private TranslateJsonViewModel _context;
+        private readonly IResxTranslationService _translationService;
+        private TranslateResxViewModel _context;
         private bool _translationRunning;
+
         public CommandsViewData Commands { get; private set; }
 
-        private bool CanTranslateJson
+        private bool CanTranslateResx
         {
             get
             {
@@ -30,7 +31,7 @@ namespace Mmu.Dt.WpfUI.Areas.JsonTranslation.ViewModels
             }
         }
 
-        private IViewModelCommand TranslateJson
+        private IViewModelCommand TranslateResx
         {
             get
             {
@@ -51,32 +52,32 @@ namespace Mmu.Dt.WpfUI.Areas.JsonTranslation.ViewModels
                             _context.TargetFilePath,
                             _context.SelectedTargetLanguage.Code);
 
-                        await _jsonTranslationService.TranslateAsync(request);
+                        await _translationService.TranslateAsync(request);
                         _informationPublisher.Publish(InformationEntry.CreateSuccess("Translation finished!", false, 5));
                     }
                     finally
                     {
                         _translationRunning = false;
                     }
-                }, () => CanTranslateJson));
+                }, () => CanTranslateResx));
             }
         }
 
         public CommandContainer(
-            IJsonTranslationService jsonTranslationService,
+            IResxTranslationService translationService,
             IInformationPublisher informationPublisher)
         {
-            _jsonTranslationService = jsonTranslationService;
+            _translationService = translationService;
             _informationPublisher = informationPublisher;
         }
 
-        public Task InitializeAsync(TranslateJsonViewModel context)
+        public Task InitializeAsync(TranslateResxViewModel context)
         {
             _context = context;
-            _context.SourceFilePath = @"C:\Users\mlm\Desktop\en.json";
-            _context.TargetFilePath = @"C:\Users\mlm\Desktop\de.json";
+            _context.SourceFilePath = @"C:\MyGit\Personal\MobileLearningSystem3\Backend\Sources\Translations\WebApi\Areas\Web\Controllers\HelloController\HelloController.resx";
+            _context.TargetFilePath = @"C:\MyGit\Personal\MobileLearningSystem3\Backend\Sources\Translations\WebApi\Areas\Web\Controllers\HelloController\HelloController.de.resx";
+            Commands = new CommandsViewData(TranslateResx);
 
-            Commands = new CommandsViewData(TranslateJson);
             return Task.CompletedTask;
         }
     }
